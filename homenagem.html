@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Obrigada por nos acompanhar | Rebeca e Julia</title>
+<meta name="theme-color" content="#0b2358">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Caveat:wght@600&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
+<style>
+:root{--navy:#0b2358;--gold:#f5a623;--ink:#10213f}
+*{box-sizing:border-box;margin:0}
+html,body{min-height:100%}
+body{font-family:Nunito,system-ui,sans-serif;color:var(--ink);background:#fff;overflow-x:hidden}
+.page{max-width:480px;min-height:100dvh;margin:0 auto;display:flex;flex-direction:column;padding:max(16px,env(safe-area-inset-top)) 20px 0}
+.logo{display:flex;justify-content:center;align-items:center;gap:8px;min-height:64px;color:var(--navy);font-family:'Baloo 2';font-weight:800;line-height:1}
+.logo img{height:64px}
+.logo small{display:block;font-size:10px;letter-spacing:.2em;font-weight:600}
+h1{font-family:'Baloo 2';font-weight:800;font-size:clamp(40px,12vw,56px);line-height:.95;color:var(--navy);text-align:center;margin:48px 0 6px;position:relative}
+h1::after{content:"";display:block;width:62%;height:5px;border-radius:4px;background:var(--gold);margin:8px auto 0;transform:rotate(-1.5deg)}
+.sub{text-align:center;line-height:1.45;font-size:17px;font-weight:600;margin:12px 0 18px}
+.list{display:grid;gap:12px;padding-bottom:28px}
+.t{display:flex;align-items:center;gap:16px;padding:14px 18px;border-radius:28px;background:var(--c);color:var(--ink);text-decoration:none;font-weight:800;font-size:22px;box-shadow:0 2px 8px rgba(11,35,88,.08);transition:transform .15s}
+.t:active{transform:scale(.97)}
+.t:hover{transform:translateY(-2px)}
+.t .ch{margin-left:auto;font-size:26px}
+.av{width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:800;font-size:22px;flex:none;overflow:hidden}
+.av img{width:100%;height:100%;object-fit:cover}
+.back{position:absolute;top:max(16px,env(safe-area-inset-top));left:16px;width:46px;height:46px;border-radius:50%;border:none;background:#f1f4fa;font-size:24px;color:var(--navy);cursor:pointer;text-decoration:none;display:grid;place-items:center}
+.big{width:150px;height:150px;border-radius:50%;margin:34px auto 12px;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:'Baloo 2';font-weight:800;font-size:84px;border:6px solid var(--c,var(--gold));box-shadow:0 0 0 6px var(--navy),0 10px 24px rgba(11,35,88,.3);overflow:hidden}
+.big img{width:100%;height:100%;object-fit:cover}
+.name{font-family:'Baloo 2';font-weight:800;font-size:46px;color:var(--navy);text-align:center}
+.pl{display:flex;align-items:center;gap:12px;background:var(--navy);border-radius:40px;padding:10px 20px 10px 10px;margin:14px 0 10px;box-shadow:0 4px 12px rgba(11,35,88,.2)}
+.pp{width:54px;height:54px;border-radius:50%;border:none;background:#fff;color:var(--navy);display:grid;place-items:center;cursor:pointer;flex:none;transition:transform .15s}
+.pp:active{transform:scale(.92)}
+.pp svg{width:24px;height:24px;fill:currentColor}
+.bar{flex:1;height:30px;display:flex;align-items:center;cursor:pointer;touch-action:none;position:relative}
+.ln{height:4px;width:100%;background:rgba(255,255,255,.28);border-radius:3px;position:relative}
+.fl{height:100%;width:0;background:#fff;border-radius:3px}
+.kn{position:absolute;top:50%;left:0;width:16px;height:16px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);box-shadow:0 0 0 4px rgba(255,255,255,.2)}
+.tm{color:#fff;font-weight:600;font-size:15px;min-width:36px;text-align:right}
+.vt{display:block;margin:6px auto;background:none;border:none;font:800 18px Nunito;color:var(--navy);text-decoration:underline;cursor:pointer;padding:8px}
+.tx{display:none;background:#f6f8fc;border-radius:20px;padding:14px 16px;font-size:17px;line-height:1.5;margin:6px 0}
+.tx.on{display:block}
+.nx{align-self:center;margin:14px 0 24px;background:var(--gold);color:var(--navy);font-weight:800;border-radius:30px;padding:10px 22px;text-decoration:none;font-size:17px}
+.err{text-align:center;font-size:14px;color:#8a2d1c;min-height:18px;font-weight:600}
+.foot{margin:auto 0 0;padding:22px 0 max(22px,env(safe-area-inset-bottom));text-align:center;color:var(--navy);font:600 26px/1.1 Caveat;border-top:1px solid #e6eaf2}
+.rain{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:50}
+.rain span{position:absolute;top:-50px;animation:fall linear forwards}
+@keyframes fall{to{transform:translateY(112vh) rotate(var(--r))}}
+.in{animation:in .45s ease both}
+@keyframes in{from{opacity:0;transform:translateY(10px)}}
+:focus-visible{outline:3px solid var(--gold);outline-offset:3px}
+@media(prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}}
+</style>
+</head>
+<body>
+<div class="rain" id="rain" aria-hidden="true"></div>
+<main class="page" id="app"></main>
+
+<script>
+/* ============ EDITE AQUI ============
+   nome: nome do professor | cor: cor do bloco
+   audio: caminho do áudio (pasta audios/)
+   foto: caminho da foto (ex.: "fotos/aline.jpg") ou "" para usar a inicial
+   texto: transcrição do áudio                         */
+var PROFS=[
+ {id:"aline",  nome:"Aline",  cor:"#b5d8fb",audio:"audios/aline.mp3",  foto:"",texto:"Escreva aqui o que foi dito no áudio para a Aline."},
+ {id:"cintia", nome:"Cíntia", cor:"#fdc4cb",audio:"audios/cintia.mp3", foto:"",texto:"Escreva aqui o que foi dito no áudio para a Cíntia."},
+ {id:"joao",   nome:"João",   cor:"#c9e8b0",audio:"audios/joao.mp3",   foto:"",texto:"Escreva aqui o que foi dito no áudio para o João."},
+ {id:"isabela",nome:"Isabela",cor:"#fdd08a",audio:"audios/isabela.mp3",foto:"",texto:"Escreva aqui o que foi dito no áudio para a Isabela."},
+ {id:"pedro",  nome:"Pedro",  cor:"#dcc5fb",audio:"audios/pedro.mp3",  foto:"",texto:"Escreva aqui o que foi dito no áudio para o Pedro."},
+ {id:"regina", nome:"Regina", cor:"#b4e9da",audio:"audios/regina.mp3", foto:"",texto:"Escreva aqui o que foi dito no áudio para a Regina."}
+];
+var MSG_FINAL="Com carinho, Rebeca e Julia.";
+/* ==================================== */
+
+var app=document.getElementById("app"),rain=document.getElementById("rain"),au=null;
+var EMO=["❤️","👏","💛","👏","💙","🩷","👏"];
+
+var LOGO='<img src="logo.png" alt="Clube da Maré" onerror="this.outerHTML=\'<div style=&quot;text-align:center&quot;>CLUBE<br>DA MARÉ<small>BEACH CLUB</small></div>\'">';
+var FOOT='<div class="foot">'+MSG_FINAL+'</div>';
+
+function avatar(p){return p.foto?'<img src="'+p.foto+'" alt="">':p.nome[0]}
+function fmt(s){s=Math.floor(s||0);return Math.floor(s/60)+":"+("0"+s%60).slice(-2)}
+
+function chuva(n){
+  var q=window.matchMedia("(prefers-reduced-motion:reduce)").matches?8:n;
+  for(var i=0;i<q;i++){
+    var s=document.createElement("span"),d=3+Math.random()*3;
+    s.textContent=EMO[i%EMO.length];
+    s.style.cssText="left:"+Math.random()*96+"%;font-size:"+(22+Math.random()*22)+"px;animation-duration:"+d+"s;animation-delay:"+Math.random()*1.6+"s;--r:"+(Math.random()*360-180)+"deg";
+    rain.appendChild(s);
+    setTimeout(function(e){e.remove()},(d+2)*1000,s);
+  }
+}
+
+function home(){
+  app.innerHTML='<div class="in"><h1>Obrigada por<br>nos acompanhar</h1><p class="sub">Preparamos uma homenagem para cada um de vocês.<br>Prepare o lenço: já aviso que você vai se emocionar.</p><nav class="list">'+
+  PROFS.map(function(p){return '<a class="t" style="--c:'+p.cor+'" href="#'+p.id+'"><span class="av">'+avatar(p)+'</span>'+p.nome+'<span class="ch">›</span></a>'}).join("")+
+  '</nav></div>'+FOOT;
+}
+
+function prof(i){
+  var p=PROFS[i],nx=PROFS[(i+1)%PROFS.length];
+  app.innerHTML='<div class="in" style="--c:'+p.cor+'"><a class="back" href="#" aria-label="Voltar">←</a>'+
+  '<div class="big">'+avatar(p)+'</div><h2 class="name">'+p.nome+'</h2>'+
+  '<div class="pl"><button class="pp" id="pp" aria-label="Tocar áudio"><svg viewBox="0 0 24 24" id="ic"><path d="M7 4v16l13-8z"/></svg></button><div class="bar" id="bar"><div class="ln"><div class="fl" id="fl"></div><i class="kn" id="kn"></i></div></div><span class="tm" id="tm">0:00</span></div>'+
+  '<p class="err" id="err" role="status"></p>'+
+  '<button class="vt" id="vt">Ver transcrição</button><div class="tx" id="tx">'+p.texto+'</div>'+
+  '<a class="nx" href="#'+nx.id+'">Próximo: '+nx.nome+' ›</a></div>'+FOOT;
+
+  var $=function(x){return document.getElementById(x)};
+  au=new Audio(p.audio);au.preload="metadata";
+  var PLAY="M7 4v16l13-8z",PAUSE="M6 4h4v16H6zM14 4h4v16h-4z";
+  function draw(){var d=au.duration||0,r=d?au.currentTime/d:0;$("fl").style.width=r*100+"%";$("kn").style.left=r*100+"%";$("tm").textContent=fmt(au.currentTime||d)}
+  au.onloadedmetadata=draw;au.ontimeupdate=draw;
+  au.onplay=function(){$("ic").innerHTML='<path d="'+PAUSE+'"/>';chuva(46)};
+  au.onpause=function(){$("ic").innerHTML='<path d="'+PLAY+'"/>'};
+  au.onended=function(){au.currentTime=0;draw();chuva(30)};
+  au.onerror=function(){$("err").textContent="Áudio ainda não encontrado em "+p.audio}
+  $("pp").onclick=function(){$("err").textContent="";au.paused?au.play().catch(function(){$("err").textContent="Não foi possível tocar. Confira o arquivo "+p.audio}):au.pause()};
+  var drag=false;
+  function seek(e){var r=$("bar").getBoundingClientRect(),x=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width));if(au.duration)au.currentTime=x*au.duration;draw()}
+  $("bar").onpointerdown=function(e){drag=true;this.setPointerCapture(e.pointerId);seek(e)};
+  $("bar").onpointermove=function(e){if(drag)seek(e)};
+  $("bar").onpointerup=function(){drag=false};
+  $("vt").onclick=function(){var o=$("tx").classList.toggle("on");this.textContent=o?"Ocultar transcrição":"Ver transcrição"};
+}
+
+function rota(){
+  if(au){au.pause();au=null}
+  rain.innerHTML="";window.scrollTo(0,0);
+  var id=location.hash.slice(1),i=PROFS.findIndex(function(p){return p.id===id});
+  i<0?home():prof(i);
+}
+window.addEventListener("hashchange",rota);rota();
+</script>
+</body>
+</html>
