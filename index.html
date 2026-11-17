@@ -9,7 +9,7 @@
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Baloo+2:wght@600;800&family=Caveat:wght@600&family=Nunito:wght@600;800&display=swap" rel="stylesheet">
 <style>
-:root{--navy:#0b2358;--gold:#f5a623;--ink:#10213f}
+:root{--navy:#0b2358;--gold:#f5a623;--ink:#10213f;--spring:cubic-bezier(.34,1.56,.64,1)}
 *{box-sizing:border-box;margin:0}
 html,body{min-height:100%}
 body{font-family:Nunito,system-ui,sans-serif;color:var(--ink);background:#fff;overflow-x:hidden}
@@ -21,35 +21,63 @@ h1{font-family:'Baloo 2';font-weight:800;font-size:clamp(40px,12vw,56px);line-he
 h1::after{content:"";display:block;width:62%;height:5px;border-radius:4px;background:var(--gold);margin:8px auto 0;transform:rotate(-1.5deg)}
 .sub{text-align:center;line-height:1.45;font-size:17px;font-weight:600;margin:12px 0 18px}
 .list{display:grid;gap:12px;padding-bottom:28px}
-.t{display:flex;align-items:center;gap:16px;padding:14px 18px;border-radius:28px;background:var(--c);color:var(--ink);text-decoration:none;font-weight:800;font-size:22px;box-shadow:0 2px 8px rgba(11,35,88,.08);transition:transform .15s}
-.t:active{transform:scale(.97)}
-.t:hover{transform:translateY(-2px)}
-.t .ch{margin-left:auto;font-size:26px}
-.av{width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:800;font-size:22px;flex:none;overflow:hidden}
+
+/* ---------- Cartões da home ---------- */
+.t{position:relative;overflow:hidden;display:flex;align-items:center;gap:16px;padding:14px 18px;border-radius:28px;background:var(--c);color:var(--ink);text-decoration:none;font-weight:800;font-size:22px;box-shadow:0 2px 8px rgba(11,35,88,.08);transition:transform .3s var(--spring),box-shadow .3s ease;animation:in .5s ease backwards}
+.t::before{content:"";position:absolute;inset:0;background:linear-gradient(110deg,transparent 30%,rgba(255,255,255,.65) 50%,transparent 70%);transform:translateX(-130%);pointer-events:none}
+.t .ch{margin-left:auto;font-size:26px;transition:transform .3s var(--spring)}
+.av{width:44px;height:44px;border-radius:50%;background:var(--navy);color:#fff;display:grid;place-items:center;font-weight:800;font-size:22px;flex:none;overflow:hidden;transition:transform .35s var(--spring),background .25s,color .25s}
 .av img{width:100%;height:100%;object-fit:cover}
+.t:not(.lock):hover,.t:not(.lock):focus-visible{transform:translateY(-5px) scale(1.025);box-shadow:0 18px 30px -10px color-mix(in srgb,var(--c) 55%,var(--navy)),0 2px 8px rgba(11,35,88,.1)}
+.t:not(.lock):hover::before,.t:not(.lock):focus-visible::before{transform:translateX(130%);transition:transform .8s ease}
+.t:not(.lock):hover .av,.t:not(.lock):focus-visible .av{transform:rotate(-12deg) scale(1.2);background:var(--gold);color:var(--navy)}
+.t:not(.lock):hover .ch,.t:not(.lock):focus-visible .ch{transform:translateX(8px)}
+.t:not(.lock):active{transform:scale(.97)}
 .t.lock{background:#eef0f4;color:#7b8496;box-shadow:none;cursor:not-allowed}.t.lock .av{background:#cfd5e1;font-size:20px}
-.back{position:absolute;top:max(16px,env(safe-area-inset-top));left:16px;width:46px;height:46px;border-radius:50%;border:none;background:#f1f4fa;font-size:24px;color:var(--navy);cursor:pointer;text-decoration:none;display:grid;place-items:center}
-.big{width:150px;height:150px;border-radius:50%;margin:34px auto 12px;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:'Baloo 2';font-weight:800;font-size:84px;border:6px solid var(--c,var(--gold));box-shadow:0 0 0 6px var(--navy),0 10px 24px rgba(11,35,88,.3);overflow:hidden}
+
+/* ---------- Página do professor ---------- */
+.halo{position:fixed;inset:0;z-index:-1;pointer-events:none;background:radial-gradient(circle at 50% 22%,var(--c) 0%,transparent 62%);opacity:.3;transition:opacity 1s ease}
+.halo.on{opacity:.9;animation:respira 3.2s ease-in-out infinite}
+@keyframes respira{50%{opacity:.55}}
+.back{position:absolute;top:max(16px,env(safe-area-inset-top));left:16px;width:46px;height:46px;border-radius:50%;border:none;background:#f1f4fa;font-size:24px;color:var(--navy);cursor:pointer;text-decoration:none;display:grid;place-items:center;transition:transform .3s var(--spring),background .2s}
+.back:hover{transform:translateX(-4px) scale(1.1);background:var(--gold)}
+.big{width:150px;height:150px;border-radius:50%;margin:34px auto 12px;background:var(--navy);color:#fff;display:grid;place-items:center;font-family:'Baloo 2';font-weight:800;font-size:84px;border:6px solid var(--c,var(--gold));box-shadow:0 0 0 6px var(--navy),0 10px 24px rgba(11,35,88,.3);overflow:hidden;transition:transform .4s var(--spring)}
 .big img{width:100%;height:100%;object-fit:cover}
-.name{font-family:'Baloo 2';font-weight:800;font-size:46px;color:var(--navy);text-align:center}
-.pl{display:flex;align-items:center;gap:12px;background:var(--navy);border-radius:40px;padding:10px 20px 10px 10px;margin:14px 0 10px;box-shadow:0 4px 12px rgba(11,35,88,.2)}
-.pp{width:54px;height:54px;border-radius:50%;border:none;background:#fff;color:var(--navy);display:grid;place-items:center;cursor:pointer;flex:none;transition:transform .15s}
+.big:hover{transform:scale(1.08) rotate(-4deg)}
+.name{width:fit-content;margin:0 auto;font-family:'Baloo 2';font-weight:800;font-size:46px;color:var(--navy);text-align:center}
+.name::after{content:"";display:block;height:5px;width:0;margin:0 auto;border-radius:4px;background:var(--gold);transition:width .5s ease}
+.name:hover::after,.tocando .name::after{width:100%}
+
+/* círculo de ondas ao redor da foto enquanto o áudio toca */
+.tocando .big{animation:onda 1.8s ease-out infinite}
+@keyframes onda{
+  0%{box-shadow:0 0 0 6px var(--navy),0 0 0 6px var(--c),0 10px 24px rgba(11,35,88,.3)}
+  100%{box-shadow:0 0 0 6px var(--navy),0 0 0 38px transparent,0 10px 24px rgba(11,35,88,.3)}
+}
+
+.pl{display:flex;align-items:center;gap:12px;background:var(--navy);border-radius:40px;padding:10px 20px 10px 10px;margin:14px 0 10px;box-shadow:0 4px 12px rgba(11,35,88,.2);transition:transform .3s var(--spring),box-shadow .3s}
+.pl:hover{transform:translateY(-3px);box-shadow:0 14px 26px -6px rgba(11,35,88,.45)}
+.pp{width:54px;height:54px;border-radius:50%;border:none;background:#fff;color:var(--navy);display:grid;place-items:center;cursor:pointer;flex:none;transition:transform .25s var(--spring),box-shadow .25s}
+.pp:hover{transform:scale(1.12);box-shadow:0 0 0 7px rgba(255,255,255,.18)}
 .pp:active{transform:scale(.92)}
 .pp svg{width:24px;height:24px;fill:currentColor}
 .bar{flex:1;height:30px;display:flex;align-items:center;cursor:pointer;touch-action:none;position:relative}
-.ln{height:4px;width:100%;background:rgba(255,255,255,.28);border-radius:3px;position:relative}
-.fl{height:100%;width:0;background:#fff;border-radius:3px}
-.kn{position:absolute;top:50%;left:0;width:16px;height:16px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);box-shadow:0 0 0 4px rgba(255,255,255,.2)}
+.ln{height:4px;width:100%;background:rgba(255,255,255,.28);border-radius:3px;position:relative;transition:height .2s}
+.fl{height:100%;width:0;background:linear-gradient(90deg,#fff,var(--gold));border-radius:3px}
+.kn{position:absolute;top:50%;left:0;width:16px;height:16px;border-radius:50%;background:#fff;transform:translate(-50%,-50%);box-shadow:0 0 0 4px rgba(255,255,255,.2);transition:transform .2s var(--spring)}
+.bar:hover .ln{height:7px}
+.bar:hover .kn{transform:translate(-50%,-50%) scale(1.4)}
 .tm{color:#fff;font-weight:600;font-size:15px;min-width:36px;text-align:right}
-.vt{display:block;margin:6px auto;background:none;border:none;font:800 18px Nunito;color:var(--navy);text-decoration:underline;cursor:pointer;padding:8px}
-.tx{display:none;background:#f6f8fc;border-radius:20px;padding:14px 16px;font-size:17px;line-height:1.5;margin:6px 0}
-.tx.on{display:block}
-.nx{align-self:center;margin:14px 0 24px;background:var(--gold);color:var(--navy);font-weight:800;border-radius:30px;padding:10px 22px;text-decoration:none;font-size:17px}
 .err{text-align:center;font-size:14px;color:#8a2d1c;min-height:18px;font-weight:600}
 .foot{margin:auto 0 0;padding:22px 0 max(22px,env(safe-area-inset-bottom));text-align:center;color:var(--navy);font:600 26px/1.1 Caveat;border-top:1px solid #e6eaf2}
-.rain{position:fixed;inset:0;pointer-events:none;overflow:hidden;z-index:50}
+
+/* ---------- Chuva de emojis e corações ao passar o mouse ---------- */
+.rain,.pop{position:fixed;inset:0;pointer-events:none;overflow:hidden}
+.rain{z-index:50}.pop{z-index:49}
 .rain span{position:absolute;top:-50px;animation:fall linear forwards}
+.pop span{position:absolute;animation:rise 1.3s ease-out forwards}
 @keyframes fall{to{transform:translateY(112vh) rotate(var(--r))}}
+@keyframes rise{0%{opacity:0;transform:translate(0,0) scale(.5)}15%{opacity:1}100%{opacity:0;transform:translate(var(--x),-80px) scale(1.15)}}
 .in{animation:in .45s ease both}
 @keyframes in{from{opacity:0;transform:translateY(10px)}}
 :focus-visible{outline:3px solid var(--gold);outline-offset:3px}
@@ -58,14 +86,14 @@ h1::after{content:"";display:block;width:62%;height:5px;border-radius:4px;backgr
 </head>
 <body>
 <div class="rain" id="rain" aria-hidden="true"></div>
+<div class="pop" id="pop" aria-hidden="true"></div>
 <main class="page" id="app"></main>
 
 <script>
 /* ============ EDITE AQUI ============
    nome: nome do professor | cor: cor do bloco
-   audio: caminho do áudio (pasta audios/)
-   foto: caminho da foto (ex.: "fotos/aline.jpg") ou "" para usar a inicial
-   texto: transcrição do áudio                         */
+   audio: caminho do áudio
+   foto: caminho da foto (ex.: "fotos/aline.jpg") ou "" para usar a inicial */
 var PROFS=[
  {id:"aline",  nome:"Aline",  cor:"#b5d8fb",audio:"aline.mp3",  foto:""},
  {id:"cintia", nome:"Cíntia", cor:"#fdc4cb",audio:"cintia.mp3", foto:""},
@@ -77,7 +105,7 @@ var PROFS=[
 var MSG_FINAL="Com carinho, Rebeca e Julia.";
 /* ==================================== */
 
-var app=document.getElementById("app"),rain=document.getElementById("rain"),au=null;
+var app=document.getElementById("app"),rain=document.getElementById("rain"),pop=document.getElementById("pop"),au=null;
 var EMO=["❤️","👏","💛","👏","💙","🩷","👏"];
 
 var LOGO='<img src="logo.png" alt="Clube da Maré" onerror="this.outerHTML=\'<div style=&quot;text-align:center&quot;>CLUBE<br>DA MARÉ<small>BEACH CLUB</small></div>\'">';
@@ -89,9 +117,10 @@ function setEsc(id){mem=id;try{localStorage.setItem("prof_escolhido",id)}catch(e
 function limpaEsc(){mem=null;try{localStorage.removeItem("prof_escolhido")}catch(e){}}
 function avatar(p){return p.foto?'<img src="'+p.foto+'" alt="">':p.nome[0]}
 function fmt(s){s=Math.floor(s||0);return Math.floor(s/60)+":"+("0"+s%60).slice(-2)}
+function reduz(){return window.matchMedia("(prefers-reduced-motion:reduce)").matches}
 
 function chuva(n){
-  var q=window.matchMedia("(prefers-reduced-motion:reduce)").matches?8:n;
+  var q=reduz()?8:n;
   for(var i=0;i<q;i++){
     var s=document.createElement("span"),d=3+Math.random()*3;
     s.textContent=EMO[i%EMO.length];
@@ -101,45 +130,63 @@ function chuva(n){
   }
 }
 
+/* corações que sobem do cartão quando o mouse passa por cima */
+function explode(el){
+  if(reduz()||!window.matchMedia("(hover:hover)").matches)return;
+  var agora=Date.now();if(el._u&&agora-el._u<900)return;el._u=agora;
+  var r=el.getBoundingClientRect();
+  for(var i=0;i<7;i++){
+    var s=document.createElement("span");
+    s.textContent=EMO[i%EMO.length];
+    s.style.cssText="left:"+(r.left+12+Math.random()*(r.width-24))+"px;top:"+(r.top+r.height/2)+"px;font-size:"+(16+Math.random()*12)+"px;animation-delay:"+i*70+"ms;--x:"+(Math.random()*50-25)+"px";
+    pop.appendChild(s);
+    setTimeout(function(e){e.remove()},1500,s);
+  }
+}
+
 function home(){
   var esc=getEsc();
   app.innerHTML='<div class="in"><h1>Obrigada por<br>nos acompanhar</h1><p class="sub">Preparamos uma homenagem para cada um de vocês.<br>Prepare o lenço: já aviso que você vai se emocionar.</p><nav class="list">'+
-  PROFS.map(function(p){
-    if(esc&&p.id!==esc)return '<div class="t lock" aria-label="Bloqueado"><span class="av">🔒</span>Bloqueado</div>';
-    return '<a class="t" style="--c:'+p.cor+'" href="#'+p.id+'"><span class="av">'+avatar(p)+'</span>'+p.nome+'<span class="ch">›</span></a>'}).join("")+
+  PROFS.map(function(p,i){
+    var d='animation-delay:'+(0.15+i*0.07)+'s';
+    if(esc&&p.id!==esc)return '<div class="t lock" style="'+d+'" aria-label="Bloqueado"><span class="av">🔒</span>Bloqueado</div>';
+    return '<a class="t" style="--c:'+p.cor+';'+d+'" href="#'+p.id+'"><span class="av">'+avatar(p)+'</span>'+p.nome+'<span class="ch">›</span></a>'}).join("")+
   '</nav></div>'+FOOT;
+  Array.prototype.forEach.call(app.querySelectorAll(".t:not(.lock)"),function(el){
+    el.addEventListener("mouseenter",function(){explode(el)});
+  });
 }
 
 function prof(i){
   var p=PROFS[i];
-  app.innerHTML='<div class="in" style="--c:'+p.cor+'"><a class="back" href="#" aria-label="Voltar">←</a>'+
+  app.innerHTML='<div class="halo" id="halo" style="--c:'+p.cor+'"></div>'+
+  '<div class="in" id="wrap" style="--c:'+p.cor+'"><a class="back" href="#" aria-label="Voltar">←</a>'+
   '<div class="big">'+avatar(p)+'</div><h2 class="name">'+p.nome+'</h2>'+
   '<div class="pl"><button class="pp" id="pp" aria-label="Tocar áudio"><svg viewBox="0 0 24 24" id="ic"><path d="M7 4v16l13-8z"/></svg></button><div class="bar" id="bar"><div class="ln"><div class="fl" id="fl"></div><i class="kn" id="kn"></i></div></div><span class="tm" id="tm">0:00</span></div>'+
   '<p class="err" id="err" role="status"></p>'+
-  '<button class="vt" id="vt">Ver transcrição</button><div class="tx" id="tx">'+p.texto+'</div>'+
   '</div>'+FOOT;
 
   var $=function(x){return document.getElementById(x)};
+  function tocando(on){$("wrap").classList.toggle("tocando",on);$("halo").classList.toggle("on",on)}
   au=new Audio(p.audio);au.preload="metadata";
   var PLAY="M7 4v16l13-8z",PAUSE="M6 4h4v16H6zM14 4h4v16h-4z";
   function draw(){var d=au.duration||0,r=d?au.currentTime/d:0;$("fl").style.width=r*100+"%";$("kn").style.left=r*100+"%";$("tm").textContent=fmt(au.currentTime||d)}
   au.onloadedmetadata=draw;au.ontimeupdate=draw;
-  au.onplay=function(){$("ic").innerHTML='<path d="'+PAUSE+'"/>';chuva(46)};
-  au.onpause=function(){$("ic").innerHTML='<path d="'+PLAY+'"/>'};
-  au.onended=function(){au.currentTime=0;draw();chuva(30)};
-  au.onerror=function(){$("err").textContent="Áudio ainda não encontrado em "+p.audio}
+  au.onplay=function(){$("ic").innerHTML='<path d="'+PAUSE+'"/>';tocando(true);chuva(46)};
+  au.onpause=function(){$("ic").innerHTML='<path d="'+PLAY+'"/>';tocando(false)};
+  au.onended=function(){au.currentTime=0;draw();tocando(false);chuva(30)};
+  au.onerror=function(){$("err").textContent="Áudio ainda não encontrado em "+p.audio};
   $("pp").onclick=function(){$("err").textContent="";au.paused?au.play().catch(function(){$("err").textContent="Não foi possível tocar. Confira o arquivo "+p.audio}):au.pause()};
   var drag=false;
   function seek(e){var r=$("bar").getBoundingClientRect(),x=Math.max(0,Math.min(1,(e.clientX-r.left)/r.width));if(au.duration)au.currentTime=x*au.duration;draw()}
   $("bar").onpointerdown=function(e){drag=true;this.setPointerCapture(e.pointerId);seek(e)};
   $("bar").onpointermove=function(e){if(drag)seek(e)};
   $("bar").onpointerup=function(){drag=false};
-  $("vt").onclick=function(){var o=$("tx").classList.toggle("on");this.textContent=o?"Ocultar transcrição":"Ver transcrição"};
 }
 
 function rota(){
   if(au){au.pause();au=null}
-  rain.innerHTML="";window.scrollTo(0,0);
+  rain.innerHTML="";pop.innerHTML="";window.scrollTo(0,0);
   var id=location.hash.slice(1);
   if(id==="liberar"){limpaEsc();location.replace("#");return}
   var i=PROFS.findIndex(function(p){return p.id===id});
